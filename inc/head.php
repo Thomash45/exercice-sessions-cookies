@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +41,7 @@
           <li>
             <a href="/cart.php" class="btn btn-warning navbar-btn">
               <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-              Cart
+              Cart <span class="badge"><?php if (!empty($panier_count)){ echo $panier_count;} ?></span>
             </a>
           </li>
         </ul>
@@ -47,6 +49,8 @@
     </div><!-- /.container-fluid -->
   </nav>
   <div class="container-fluid text-right">
-    <strong>Hello Wilder !</strong>
+    <strong>Hello <?php if (!empty($_SESSION['loginname'])){ echo $_SESSION['loginname']; } else { echo 'Wilder';} ?> !</strong>
+      <a href="?sessionend=1" class="btn-lg btn-primary">deconnexion</a>
+
   </div>
 </header>

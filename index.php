@@ -1,3 +1,37 @@
+
+<?php
+
+// On prolonge la session
+session_start();
+// On teste si la variable de session existe et contient une valeur
+if(empty($_SESSION['loginname']))
+{
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location: login.php');
+    exit();
+}
+
+if (isset($_GET["add_to_cart"]))
+{
+    if (!isset($_SESSION["panier"]))
+    {
+        $_SESSION["panier"] = array();
+    }
+    array_push($_SESSION["panier"], $_GET["add_to_cart"]);
+}
+//compter elements dans panier
+$panier_count = 0;
+if (isset($_SESSION["panier"]))
+{
+    $panier_count = sizeof($_SESSION["panier"]);
+}
+if (isset($_GET["sessionend"]))
+{
+    session_unset();
+
+}
+
+?>
 <?php require 'inc/head.php'; ?>
 <section class="cookies container-fluid">
   <div class="row">
